@@ -40,7 +40,7 @@ int main() {
         perror("Failed to open device");
         exit(EXIT_FAILURE);
     }
-#if 1
+
     // 3. 从设备读取数据
     ret = read(fd, read_buf, sizeof(read_buf));
     if (ret < 0) {
@@ -65,7 +65,7 @@ int main() {
     } else {
         printf("IOCTL GET STATUS succeeded. Value: %d\n", status);
     }
-#endif
+
     // 5. 关闭设备
     close(fd);
     return 0;
