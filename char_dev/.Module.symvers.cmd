@@ -1,0 +1,1 @@
+savedcmd_/home/soha/work/linux/linux/demo/char_dev/Module.symvers :=  scripts/mod/modpost -M -m       -o /home/soha/work/linux/linux/demo/char_dev/Module.symvers -T /home/soha/work/linux/linux/demo/char_dev/modules.order -i Module.symvers -e 

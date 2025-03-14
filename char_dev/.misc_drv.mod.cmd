@@ -1,0 +1,1 @@
+savedcmd_/home/soha/work/linux/linux/demo/char_dev/misc_drv.mod := printf '%s\n'   misc_drv.o | awk '!x[$$0]++ { print("/home/soha/work/linux/linux/demo/char_dev/"$$0) }' > /home/soha/work/linux/linux/demo/char_dev/misc_drv.mod
