@@ -1,0 +1,60 @@
+# Docker Compose for ARM64 Buildroot Cross-Compilation Environment
+version: '3.8'
+
+services:
+  buildroot-arm64:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+      platforms:
+        - linux/amd64  # 支持 Apple Silicon 和 Intel Mac
+    container_name: buildroot-arm64-builder
+    hostname: buildroot-arm64
+    platform: linux/amd64  # 确保在 Apple Silicon 上使用 Rosetta 2
+    
+    # 挂载卷
+    volumes:
+      # 挂载 buildroot 源码目录
+      - ./buildroot:/workspace/buildroot:rw
+      # 挂载输出目录
+      - ./output:/workspace/output:rw
+      # 挂载缓存目录以加速构建
+      - buildroot-dl:/workspace/buildroot/dl
+      - buildroot-ccache:/home/builduser/.ccache
+      
+    # 环境变量
+    environment:
+      - CROSS_COMPILE=aarch64-linux-gnu-
+      - ARCH=arm64
+      - BR2_DL_DIR=/workspace/buildroot/dl
+      - CCACHE_DIR=/home/builduser/.ccache
+      
+    # 保持容器运行
+    tty: true
+    stdin_open: true
+    
+    # 网络配置
+    networks:
+      - buildroot-net
+      
+    # 资源限制
+    deploy:
+      resources:
+        limits:
+          cpus: '8.0'
+          memory: 16G
+        reservations:
+          cpus: '2.0'
+          memory: 4G
+
+# 定义网络
+networks:
+  buildroot-net:
+    driver: bridge
+
+# 定义持久化卷
+volumes:
+  buildroot-dl:
+    driver: local
+  buildroot-ccache:
+    driver: local

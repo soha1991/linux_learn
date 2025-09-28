@@ -1,0 +1,80 @@
+# Docker ignore file for ARM64 Buildroot build environment
+
+# 版本控制
+.git
+.gitignore
+.gitattributes
+
+# 构建输出
+output/
+buildroot/output/
+buildroot/dl/
+*.o
+*.a
+*.so
+*.so.*
+
+# 日志文件
+*.log
+
+# 临时文件
+*~
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# IDE/编辑器文件
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# macOS 特定文件
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# 压缩文件
+*.tar.gz
+*.tar.xz
+*.tar.bz2
+*.zip
+*.rar
+
+# 大型二进制文件
+*.iso
+*.img
+*.bin
+
+# 缓存目录
+.ccache/
+.cache/
+
+# Node.js (如果有)
+node_modules/
+npm-debug.log*
+
+# Python (如果有)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+
+# 文档
+README.md
+BUILD_README.md
+*.md
+
+# 许可证文件
+LICENSE
+COPYING
+
+# 示例和测试文件
+examples/
+tests/
+test/
